@@ -1,0 +1,50 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  username      String   @unique
+  email         String   @unique
+  walletAddress String?  @unique
+  status        String   @default("active") // active or suspended
+  verified      Boolean  @default(false)
+  credits       Float    @default(0)
+  joinedAt      DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  password      String
+  twoFactorSecret String? // Store the 2FA secret
+  twoFactorEnabled Boolean @default(false) // Indicates if 2FA is enabled for the user
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  twoFactorSecret String? // Store the 2FA secret
+  twoFactorEnabled Boolean @default(false) // Indicates if 2FA is enabled for the admin
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Idol {
+  id                Int       @id @default(autoincrement())
+  xHandle           String    @unique
+  name              String
+  characterDescription String
+  setting           String
+  idolType          String    // 'rogue' or 'allied'
+  idolImage         String
+  launchTiming      DateTime
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
