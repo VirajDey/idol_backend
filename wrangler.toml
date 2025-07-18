@@ -1,5 +1,6 @@
 name = "my-app"
 compatibility_date = "2024-05-01"
+main = ".vercel/output/functions/_worker.js"
 
 [build]
 command = "npm run build"
@@ -11,5 +12,4 @@ command = "npm run build"
 # FRONTEND_URL = "your-frontend-url"
 
 [site]
-bucket = ".vercel/output/static"
-entry-point = ".vercel/output/functions/_worker.js" 
+bucket = ".vercel/output/static" 

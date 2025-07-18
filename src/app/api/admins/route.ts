@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { hashPassword } from '@/lib/auth';
 
 const prisma = new PrismaClient()
 
@@ -29,11 +30,13 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { email, name, password, role } = body
 
+    const hashedPassword = await hashPassword(password);
+
     const admin = await prisma.admin.create({
       data: {
         email,
         name,
-        password, // Note: In production, password should be hashed
+        password: hashedPassword, // Always store hashed password
         role: role || 'admin'
       },
     })
