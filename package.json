@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@noble/hashes": "^1.8.0",
     "@prisma/client": "^6.12.0",
     "bcryptjs": "^3.0.2",
+    "jose": "^6.0.12",
     "jsonwebtoken": "^9.0.2",
     "next": "15.4.1",
     "otplib": "^12.0.1",

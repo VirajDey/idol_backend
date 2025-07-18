@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const token = generateToken(user.id, user.twoFactorEnabled || false, user.twoFactorEnabled ? true : false);
+    const token = await generateToken(user.id, user.twoFactorEnabled || false, user.twoFactorEnabled ? true : false);
 
     return NextResponse.json({
       token,

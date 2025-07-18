@@ -58,7 +58,7 @@ export async function DELETE(req: NextRequest) {
     }
 
     await prisma.idol.delete({
-      where: { id: id },
+      where: { id: Number(id) },
     });
 
     return NextResponse.json({ message: "Idol deleted successfully" });

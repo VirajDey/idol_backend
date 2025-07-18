@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Generate token
-    const token = generateToken(user.id, user.twoFactorEnabled || false, false);
+    const token = await generateToken(user.id, user.twoFactorEnabled || false, false);
 
     return NextResponse.json({
       token,

@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const decoded = verifyToken(token) as { userId: number, twoFactorEnabled?: boolean, twoFactorVerified?: boolean };
+    const decoded = await verifyToken(token) as { userId: number, twoFactorEnabled?: boolean, twoFactorVerified?: boolean };
 
     if (!decoded || !decoded.userId) {
       return NextResponse.json(
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate a new token with twoFactorVerified set to true
-    const newToken = generateToken(user.id, true, true);
+    const newToken = await generateToken(user.id, true, true);
 
     return NextResponse.json({
       token: newToken,

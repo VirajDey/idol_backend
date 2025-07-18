@@ -20,7 +20,7 @@ export async function authMiddleware(request: NextRequest) {
     );
   }
 
-  const decoded = verifyToken(token) as { userId: number, twoFactorEnabled?: boolean, twoFactorVerified?: boolean };
+  const decoded = await verifyToken(token) as { userId: number, twoFactorEnabled?: boolean, twoFactorVerified?: boolean };
   
   if (!decoded) {
     return NextResponse.json(
