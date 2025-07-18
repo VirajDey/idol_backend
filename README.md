@@ -136,3 +136,33 @@ These routes require a valid JWT token in the Authorization header:
 6. Implement password recovery
 7. Add email verification
 8. Monitor failed login attempts
+
+## Deploying to Cloudflare Pages
+
+This project is ready to deploy to [Cloudflare Pages](https://pages.cloudflare.com/) using the `@cloudflare/next-on-pages` adapter.
+
+### 1. Requirements
+- Cloudflare account
+- PostgreSQL database accessible from Cloudflare (not localhost)
+- (Recommended) [Prisma Data Proxy](https://www.prisma.io/docs/data-platform/data-proxy) for serverless environments
+
+### 2. Environment Variables
+Set these in the Cloudflare Pages dashboard or in your `wrangler.toml` (do NOT commit secrets):
+- `DATABASE_URL` (use a remote DB, not localhost)
+- `JWT_SECRET`
+- `FRONTEND_URL`
+
+### 3. Deploy Steps
+1. Push your code to GitHub
+2. Connect your repo to Cloudflare Pages
+3. Set the build command: `npm run build`
+4. Set the output directory: `.vercel/output/static`
+5. Set environment variables in the Cloudflare dashboard
+6. (If using Prisma Data Proxy) Update your `DATABASE_URL` to use the Data Proxy URL
+
+### 4. Prisma on Cloudflare
+- For best results, use [Prisma Data Proxy](https://www.prisma.io/docs/data-platform/data-proxy) to avoid binary issues in serverless.
+- If you use a managed DB (like Supabase, Neon, PlanetScale), ensure it allows connections from Cloudflare.
+
+### 5. wrangler.toml
+A sample `wrangler.toml` is included for Cloudflare Pages configuration.

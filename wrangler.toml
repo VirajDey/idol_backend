@@ -1,0 +1,15 @@
+name = "my-app"
+compatibility_date = "2024-05-01"
+
+[build]
+command = "npm run build"
+
+[env.production]
+# Add your environment variables here or set them in the Cloudflare dashboard
+# DATABASE_URL = "your-production-database-url"
+# JWT_SECRET = "your-jwt-secret"
+# FRONTEND_URL = "your-frontend-url"
+
+[site]
+bucket = ".vercel/output/static"
+entry-point = ".vercel/output/functions/_worker.js" 
