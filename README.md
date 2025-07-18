@@ -7,7 +7,6 @@ This is a Next.js application with separate tables for users and admins using Pr
 1. Install dependencies:
 ```bash
 npm install
-npm install otplib
 ```
 
 2. Configure your database and authentication:
